@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+
+	<ui:define name="titulo">
+		<title>Paciente</title>
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<!-- TABELA DE PACIENTES CADASTRADOS -->
+
+		<h:form id="formTabelaPacientes">
+
+			<p:dataTable id="tabelaPacientes" var="paciente" 
+				value="#{pacienteBean.pacientes}"
+				emptyMessage="Nenhum paciente cadastrado" 
+				paginator="true" rows="20"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                rowsPerPageTemplate="20,50,100,500" 
+				style="margin-bottom:20px; text-align:center;">
+
+				<f:facet name="header">
+					Pacientes
+				</f:facet>
+
+				<p:column headerText="Código" style="width: 70px;">
+					<h:outputText value="#{paciente.codigoPaciente}" />
+				</p:column>
+
+				<p:column headerText="Nome"
+					sortBy="#{paciente.nome}"
+					filterBy="#{paciente.nome}" 
+					filterMatchMode="contains" style="width: 300px;" >
+					<h:outputText value="#{paciente.nome}" />
+				</p:column>
+
+				<p:column headerText="Data Nasc." >
+					<h:outputText value="#{paciente.dataNascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Sexo" style="width: 25px;">
+					<h:outputText value="#{paciente.sexo}" />
+				</p:column>
+
+				<p:column headerText="Número de Pasta">
+					<h:outputText value="#{paciente.numeroPasta}" />
+				</p:column>
+				
+				<p:column headerText="Doc. Paciente">
+					<h:outputText value="#{paciente.documentoPaciente}" />
+				</p:column>
+				
+				<p:column headerText="Cartão SUS">
+					<h:outputText value="#{paciente.cartaoSus}" />
+				</p:column>
+				
+				<p:column headerText="CPF">
+					<h:outputText value="#{paciente.cpf}" />
+				</p:column>
+				
+				
+				
+				
+				
+
+				<p:column headerText="Ações" style="width: 50px;">
+					<h:panelGrid id="panelGridAcoes" columns="3"
+						style="float:right;padding-top: 5px;">
+
+						<p:commandButton
+							update="formDetalhes:pacienteDetalhes"
+							oncomplete="PF('pacienteDialog').show()" title="Visualizar"
+							icon="fa fa-fw fa-search">
+
+							<f:setPropertyActionListener value="#{paciente}"
+								target="#{pacienteBean.paciente}" />
+						</p:commandButton>
+
+						<p:autoUpdate />
+					</h:panelGrid>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<!-- JANELA DE DIÁLOGO COM OS DETALHES DO PACIENTE -->
+		
+		<h:form id="formDetalhes">
+			<p:dialog header="Detalhes do Paciente"
+				widgetVar="pacienteDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" height="auto" width="auto" >
+				<div align="center">
+				<p:outputPanel id="pacienteDetalhes" style="text-align:center; font-size:10px; horizontal-align:center;" >
+					<p:panelGrid columns="2"
+						rendered="#{not empty pacienteBean.paciente}"
+						columnClasses="label,value" style="text-align:center; horizontal-align:center;" >
+						<f:facet name="header">
+
+						</f:facet>
+						
+					<h:outputText value="Código" />
+					<h:outputText value="#{pacienteBean.paciente.codigoPaciente}" />
+				
+					<h:outputText value="Nome" />
+					<h:outputText value="#{pacienteBean.paciente.nome}" />
+
+					<h:outputText value="Data Nasc." />
+					<h:outputText value="#{pacienteBean.paciente.dataNascimento}" />
+				
+					<h:outputText value="Sexo" />
+					<h:outputText value="#{pacienteBean.paciente.sexo}" />
+				
+					<h:outputText value="Endereço" />
+					<h:outputText value="#{pacienteBean.paciente.endereco}" />
+				
+					<h:outputText value="Bairro" />
+					<h:outputText value="#{pacienteBean.paciente.bairro}" />
+				
+					<h:outputText value="Cód. Município" />
+					<h:outputText value="#{pacienteBean.paciente.codigoMunicipio}" />
+				
+					<h:outputText value="CEP" />
+					<h:outputText value="#{pacienteBean.paciente.cep}" />
+				
+					<h:outputText value="Documento" />
+					<h:outputText value="#{pacienteBean.paciente.documentoPaciente}" />
+				
+					<h:outputText value="CPF" />
+					<h:outputText value="#{pacienteBean.paciente.cpf}" />
+
+					<h:outputText value="PIS" />
+					<h:outputText value="#{pacienteBean.paciente.pisPaciente}" />
+				
+					<h:outputText value="Telefone" />
+					<h:outputText value="#{pacienteBean.paciente.telefone}" />
+				
+					<h:outputText value="PasPac" />
+					<h:outputText value="#{pacienteBean.paciente.pasPac}" />
+				
+					<h:outputText value="Módulo" />
+					<h:outputText value="#{pacienteBean.paciente.modulo}" />
+				
+					<h:outputText value="Último Atend." />
+					<h:outputText value="#{pacienteBean.paciente.ultimoAtendimento}" />
+				
+					<h:outputText value="Hora Atend." />
+					<h:outputText value="#{pacienteBean.paciente.horaAtendimento}" />
+				
+					<h:outputText value="Número de Pasta" />
+					<h:outputText value="#{pacienteBean.paciente.numeroPasta}" />
+			
+					<h:outputText value="Convênio" />
+					<h:outputText value="#{pacienteBean.paciente.codigoConvenio}" />
+				
+					<h:outputText value="Usuário" />
+					<h:outputText value="#{pacienteBean.paciente.usuario}" />
+				
+					<h:outputText value="Data Cadastro" />
+					<h:outputText value="#{pacienteBean.paciente.dataCadastro}" />
+				
+					<h:outputText value="Número Residência" />
+					<h:outputText value="#{pacienteBean.paciente.numeroResidencia}" />
+
+					<h:outputText value="Cartão SUS" />
+					<h:outputText value="#{pacienteBean.paciente.cartaoSus}" />
+
+					<h:outputText value="Cód. Bairro" />
+					<h:outputText value="#{pacienteBean.paciente.codigoBairro}" />
+		
+					<h:outputText value="PIS" />
+					<h:outputText value="#{pacienteBean.paciente.pis}" />
+
+					<h:outputText value="Certidão Nasc." />
+					<h:outputText value="#{pacienteBean.paciente.certidaoNascimento}" />
+				
+					</p:panelGrid>
+				</p:outputPanel>
+				</div>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
