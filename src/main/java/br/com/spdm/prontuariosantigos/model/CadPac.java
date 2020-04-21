@@ -7,14 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 //CADPAC.DBF
 @Entity
+@Table(name = "cadpac")
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
-public class Paciente implements Serializable {
+public class CadPac implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -54,13 +56,13 @@ public class Paciente implements Serializable {
 	@Column(name="pispac",length=50)
 	private String pisPaciente;
 
-	@Column(name="telpac",length=20)
+	@Column(name="telpac",length=40)
 	private String telefone;
 	
 	@Column(name="paspac",length=1)
 	private String pasPac;
 	
-	@Column(name="modolo",length=1)
+	@Column(name="modulo",length=1)
 	private String modulo;
 	
 	@Column(name="ultate",length=20)
@@ -101,9 +103,11 @@ public class Paciente implements Serializable {
 	public Integer getId() {
 		return id;
 	}
+
 	public String getCodigoPaciente() {
 		return codigoPaciente;
 	}
+
 	public String getNome() {
 		return nome;
 	}

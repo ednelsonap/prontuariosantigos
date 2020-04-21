@@ -7,7 +7,8 @@
 	<persistence-unit name="prontuariosantigos" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>br.com.spdm.prontuariosantigos.model.Paciente</class>
+		<class>br.com.spdm.prontuariosantigos.model.CadPac</class>
+		<class>br.com.spdm.prontuariosantigos.model.CadPa2</class>
 		<class>br.com.spdm.prontuariosantigos.model.Usuario</class>
 
 		<properties>
