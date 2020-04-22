@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -23,8 +25,12 @@ public class CadPac implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="codpac",length=10,unique=true)
-	private String codigoPaciente;
+	/*@Column(name="codpac",length=10,unique=true)
+	private String codigoPaciente;*/
+	
+	@OneToOne
+	@JoinColumn(name="codpac")
+	private CadPa2 codigoPaciente;
 	
 	@Column(name="nompac",length=60)
 	private String nome;
@@ -104,7 +110,7 @@ public class CadPac implements Serializable {
 		return id;
 	}
 
-	public String getCodigoPaciente() {
+	public CadPa2 getCodigoPaciente() {
 		return codigoPaciente;
 	}
 

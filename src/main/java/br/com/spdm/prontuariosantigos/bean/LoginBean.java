@@ -33,7 +33,7 @@ public class LoginBean implements Serializable {
 		boolean existe = new UsuarioDao().existe(this.usuario);
 		if(existe ) {
 			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
-			return "cadpac?faces-redirect=true";
+			return "home?faces-redirect=true";
 		}
 		
 		context.getExternalContext().getFlash().setKeepMessages(true);

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+
+	<ui:define name="titulo">
+		<title>Wareline</title>
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form id="formPesquisa">
+			<div align="center">
+				<p:fieldset legend="Pesquisar Paciente">
+					<p:panelGrid columns="4" id="panelGridPesquisa">
+
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{warelineBean.nome}" required="true" requiredMessage="Preencha o campo nome"/>
+
+						<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
+							action="#{warelineBean.pesquisar}" ajax="false"
+							process="@form"
+							update=":formTabelaPacientes:tabelaPacientes" />
+
+						<p:commandButton value="Limpar" icon="fa fa-fw fa-eraser"
+							action="#{warelineBean.limparPesquisa}" immediate="true" ajax="false"
+							style="margin-right:20px;">
+							<p:resetInput target="panelGridPesquisa" />
+
+						</p:commandButton>
+					</p:panelGrid>
+				</p:fieldset>
+			</div>
+		</h:form>
+
+
+		<!-- TABELA RESULTADO DE PACIENTES PESQUISADOS -->
+
+		<h:form id="formTabelaPacientes">
+
+			<p:dataTable id="tabelaPacientes" var="paciente" 
+				value="#{warelineBean.cadPacsFiltrados}"
+				emptyMessage="Nenhum paciente cadastrado" 
+				paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                rowsPerPageTemplate="10,20,50,100" 
+				style="margin-bottom:20px; text-align:center;">
+
+				<f:facet name="header">
+					Pacientes
+				</f:facet>
+
+				<p:column headerText="Código" style="width: 70px;">
+					<h:outputText value="#{paciente.codigoPaciente}" />
+				</p:column>
+
+				<p:column headerText="Nome"
+					style="width: 300px;" >
+					<h:outputText value="#{paciente.nome}" />
+				</p:column>
+
+				<p:column headerText="Data Nasc." >
+					<h:outputText value="#{paciente.dataNascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Mãe">
+					<h:outputText value="#{paciente.maePaciente}" />
+				</p:column>
+			
+				
+			
+				
+				<p:column headerText="Ações" style="width: 50px;">
+					<h:panelGrid id="panelGridAcoes" columns="3"
+						style="float:right;padding-top: 5px;">
+
+						<p:commandButton
+							update="formDetalhes:pacienteDetalhes"
+							oncomplete="PF('pacienteDialog').show()" title="Visualizar"
+							icon="fa fa-fw fa-search">
+
+							<f:setPropertyActionListener value="#{paciente}"
+								target="#{cadPacBean.paciente}" />
+						</p:commandButton>
+
+						<p:autoUpdate />
+					</h:panelGrid>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<!-- JANELA DE DIÁLOGO COM OS DETALHES DO PACIENTE -->
+		
+		<h:form id="formDetalhes">
+			<p:dialog header="Detalhes do Paciente"
+				widgetVar="pacienteDialog" modal="true" showEffect="fade"
+				hideEffect="fade" resizable="false" height="auto" width="auto" >
+				<div align="center">
+				<p:outputPanel id="pacienteDetalhes" style="text-align:center; font-size:10px; horizontal-align:center;" >
+					<p:panelGrid columns="2"
+						rendered="#{not empty cadPacBean.cadPac}"
+						columnClasses="label,value" style="text-align:center; horizontal-align:center;" >
+						<f:facet name="header">
+
+						</f:facet>
+						
+					<h:outputText value="Código" />
+					<h:outputText value="#{cadPacBean.cadPac.codigoPaciente}" />
+				
+					<h:outputText value="Nome" />
+					<h:outputText value="#{cadPacBean.cadPac.nome}" />
+
+					<h:outputText value="Data Nasc." />
+					<h:outputText value="#{cadPacBean.cadPac.dataNascimento}" />
+				
+					<h:outputText value="Sexo" />
+					<h:outputText value="#{cadPacBean.cadPac.sexo}" />
+				
+					<h:outputText value="Endereço" />
+					<h:outputText value="#{cadPacBean.cadPac.endereco}" />
+				
+					<h:outputText value="Bairro" />
+					<h:outputText value="#{cadPacBean.cadPac.bairro}" />
+				
+					<h:outputText value="Cód. Município" />
+					<h:outputText value="#{cadPacBean.cadPac.codigoMunicipio}" />
+				
+					<h:outputText value="CEP" />
+					<h:outputText value="#{cadPacBean.cadPac.cep}" />
+				
+					<h:outputText value="Documento" />
+					<h:outputText value="#{cadPacBean.cadPac.documentoPaciente}" />
+				
+					<h:outputText value="CPF" />
+					<h:outputText value="#{cadPacBean.cadPac.cpf}" />
+
+					<h:outputText value="PIS" />
+					<h:outputText value="#{cadPacBean.cadPac.pisPaciente}" />
+				
+					<h:outputText value="Telefone" />
+					<h:outputText value="#{cadPacBean.cadPac.telefone}" />
+				
+					<h:outputText value="PasPac" />
+					<h:outputText value="#{cadPacBean.cadPac.pasPac}" />
+				
+					<h:outputText value="Módulo" />
+					<h:outputText value="#{cadPacBean.cadPac.modulo}" />
+				
+					<h:outputText value="Último Atend." />
+					<h:outputText value="#{cadPacBean.cadPac.ultimoAtendimento}" />
+				
+					<h:outputText value="Hora Atend." />
+					<h:outputText value="#{cadPacBean.cadPac.horaAtendimento}" />
+				
+					<h:outputText value="Número de Pasta" />
+					<h:outputText value="#{cadPacBean.cadPac.numeroPasta}" />
+			
+					<h:outputText value="Convênio" />
+					<h:outputText value="#{cadPacBean.cadPac.codigoConvenio}" />
+				
+					<h:outputText value="Usuário" />
+					<h:outputText value="#{cadPacBean.cadPac.usuario}" />
+				
+					<h:outputText value="Data Cadastro" />
+					<h:outputText value="#{cadPacBean.cadPac.dataCadastro}" />
+				
+					<h:outputText value="Número Residência" />
+					<h:outputText value="#{cadPacBean.cadPac.numeroResidencia}" />
+
+					<h:outputText value="Cartão SUS" />
+					<h:outputText value="#{cadPacBean.cadPac.cartaoSus}" />
+
+					<h:outputText value="Cód. Bairro" />
+					<h:outputText value="#{cadPacBean.cadPac.codigoBairro}" />
+		
+					<h:outputText value="PIS" />
+					<h:outputText value="#{cadPacBean.cadPac.pis}" />
+
+					<h:outputText value="Certidão Nasc." />
+					<h:outputText value="#{cadPacBean.cadPac.certidaoNascimento}" />
+				
+					</p:panelGrid>
+				</p:outputPanel>
+				</div>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -3,7 +3,7 @@ package br.com.spdm.prontuariosantigos.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.ConversationScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +13,7 @@ import br.com.spdm.prontuariosantigos.dao.CadPa2Dao;
 import br.com.spdm.prontuariosantigos.model.CadPa2;
 
 @Named
-@ConversationScoped 
+@ViewScoped
 public class CadPa2Bean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

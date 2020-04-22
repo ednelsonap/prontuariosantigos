@@ -10,18 +10,20 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.com.spdm.prontuariosantigos.dao.CadPacDao;
+import br.com.spdm.prontuariosantigos.model.CadPa2;
 import br.com.spdm.prontuariosantigos.model.CadPac;
 
 @Named
 @ViewScoped
-public class CadPacBean implements Serializable{
+public class WarelineBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private CadPac cadPac = new CadPac();
+	private CadPa2 cadPa2 = new CadPa2();
 	private List<CadPac> cadPacs;
-	private String nome;
 	private List<CadPac> cadPacsFiltrados;
+	private String nome;
 	
 	@Inject
 	private CadPacDao cadPacDao;
@@ -84,5 +86,13 @@ public class CadPacBean implements Serializable{
 	public void limparPesquisa() {
 		this.cadPac = new CadPac();
 		PrimeFaces.current().resetInputs("formPesquisa:panelGridPesquisa");
+	}
+
+	public CadPa2 getCadPa2() {
+		return cadPa2;
+	}
+
+	public void setCadPa2(CadPa2 cadPa2) {
+		this.cadPa2 = cadPa2;
 	}
 }

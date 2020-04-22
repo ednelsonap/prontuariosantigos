@@ -80,7 +80,7 @@ public class CadPa2 implements Serializable {
 	@Column(name="natura",length=30)
 	private String naturalidade;
 	
-	@Column(name="nfilhos",length=1)
+	@Column(name="nfilhos",length=2)
 	private String numeroFilhos;
 	
 	@Column(name="paipac",length=60)
@@ -113,7 +113,7 @@ public class CadPa2 implements Serializable {
 	@Column(name="topografia",length=10)
 	private String tomografia;
 	
-	@Column(name="vincul",length=1)
+	@Column(name="vincul",length=10)
 	private String vincul;
 	
 	@Column(name="empremae",length=10)
