@@ -11,6 +11,7 @@ import org.primefaces.PrimeFaces;
 
 import br.com.spdm.prontuariosantigos.dao.CadPa2Dao;
 import br.com.spdm.prontuariosantigos.model.CadPa2;
+import br.com.spdm.prontuariosantigos.model.CadPac;
 
 @Named
 @ViewScoped
@@ -19,11 +20,10 @@ public class CadPa2Bean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private CadPa2 cadPa2 = new CadPa2();
-
-	private String maePaciente;
-	
+	private CadPac cadPac = new CadPac();
+	private String nomePaciente;
 	private String codigoPaciente;
-	
+
 	private List<CadPa2> cadPa2sFiltrados;
 	
 	@Inject
@@ -49,20 +49,20 @@ public class CadPa2Bean implements Serializable{
 		this.codigoPaciente = codigoPaciente;
 	}
 	
-	public String getMaePaciente() {
-		return maePaciente;
+	public String getNomePaciente() {
+		return nomePaciente;
 	}
 	
-	public void setMaePaciente(String maePaciente) {
-		this.maePaciente = maePaciente;
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
 	}
 	
 	public void pesquisarPorCodigo() {
 		cadPa2sFiltrados = cadPa2Dao.porCodigoPaciente(codigoPaciente);
 	}
 	
-	public void pesquisarPorMae() {
-		cadPa2sFiltrados = cadPa2Dao.porMaeSemelhante(maePaciente);
+	public void pesquisarPorNome() {
+		cadPa2sFiltrados = cadPa2Dao.porNomeSemelhante(nomePaciente);
 	}
 	
 	public List<CadPa2> getCadPa2sFiltrados() {
@@ -77,5 +77,13 @@ public class CadPa2Bean implements Serializable{
 	public void limparPesquisaMae() {
 		this.cadPa2 = new CadPa2();
 		PrimeFaces.current().resetInputs("formPesquisaMae:panelGridPesquisaMae");
+	}
+
+	public CadPac getCadPac() {
+		return cadPac;
+	}
+
+	public void setCadPac(CadPac cadPac) {
+		this.cadPac = cadPac;
 	}
 }

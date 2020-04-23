@@ -17,37 +17,15 @@
 		<div align="center">
 		
 			<p:fieldset legend="Pesquisa CadPa2">
-			
-				<p:panelGrid columns="2" id="panelGridPesquisa">
-				
-					<h:form id="formPesquisaCodigo">
-						<p:panelGrid columns="4" id="panelGridPesquisaCodigo">
-
-							<p:outputLabel value="Código Paciente:" for="codigoPaciente" />
-							<p:inputText id="codigoPaciente" value="#{cadPa2Bean.codigoPaciente}" required="true" requiredMessage="Preencha o campo nome"/>
-
-							<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
-								action="#{cadPa2Bean.pesquisarPorCodigo}" ajax="false"
-								process="@form"
-								update=":formTabelaPacientes:tabelaPacientes" />
-
-							<p:commandButton value="Limpar" icon="fa fa-fw fa-eraser"
-								action="#{cadPa2Bean.limparPesquisaCodigo}" immediate="true" ajax="false"
-								style="margin-right:20px;">
-								<p:resetInput target="panelGridPesquisaCodigo" />
-
-							</p:commandButton>
-						</p:panelGrid>
-					</h:form>
 					
 					<h:form id="formPesquisaMae">
 						<p:panelGrid columns="4" id="panelGridPesquisaMae">
 
-							<p:outputLabel value="Nome da Mãe:" for="mae" />
-							<p:inputText id="mae" value="#{cadPa2Bean.maePaciente}" required="true" requiredMessage="Preencha o campo nome"/>
+							<p:outputLabel value="Nome Paciente:" for="nome" />
+							<p:inputText id="nome" value="#{cadPa2Bean.nomePaciente}" required="true" requiredMessage="Preencha o campo nome"/>
 
 							<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
-								action="#{cadPa2Bean.pesquisarPorMae}" ajax="false"
+								action="#{cadPa2Bean.pesquisarPorNome}" ajax="false"
 								process="@form"
 								update=":formTabelaPacientes:tabelaPacientes" />
 
@@ -58,8 +36,7 @@
 
 							</p:commandButton>
 						</p:panelGrid>
-					</h:form>
-				</p:panelGrid>		
+					</h:form>	
 						
 			</p:fieldset>
 		</div>
@@ -82,20 +59,36 @@
 				</f:facet>
 
 				<p:column headerText="Código" style="width: 70px;">
-					<h:outputText value="#{paciente.codigoPaciente}" />
+					<h:outputText value="#{paciente.cadPac.codigoPaciente}" />
 				</p:column>
 
-				<p:column headerText="Mãe"
-					style="width: 300px;" >
+				<p:column headerText="Paciente" style="width: 300px;" >
+					<h:outputText value="#{paciente.cadPac.nome}" />
+				</p:column>
+				
+				<p:column headerText="Mãe" style="width: 300px;" >
 					<h:outputText value="#{paciente.maePaciente}" />
 				</p:column>
+				
+				<p:column headerText="Data Nasc." style="width: 300px;" >
+					<h:outputText value="#{paciente.cadPac.dataNascimento}" />
+				</p:column>
+				
+				<p:column headerText="Sexo" style="width: 300px;" >
+					<h:outputText value="#{paciente.cadPac.sexo}" />
+				</p:column>
+				
+				<p:column headerText="Número de Pasta." style="width: 300px;" >
+					<h:outputText value="#{paciente.cadPac.numeroPasta}" />
+				</p:column>
+				
 			</p:dataTable>
 			
 		</h:form>
 		
 		<!-- JANELA DE DIÁLOGO COM OS DETALHES DO PACIENTE -->
 		
-		<h:form id="formDetalhes">
+		<!-- <h:form id="formDetalhes">
 			<p:dialog header="Detalhes do Paciente"
 				widgetVar="pacienteDialog" modal="true" showEffect="fade"
 				hideEffect="fade" resizable="false" height="auto" width="auto" >
@@ -109,15 +102,16 @@
 						</f:facet>
 						
 					<h:outputText value="Código" />
-					<h:outputText value="#{cadPa2Bean.cadPa2.codigoPaciente}" />
+					<h:outputText value="#{cadPa2Bean.cadPa2.cadPac.codigoPaciente}" />
 				
-					
+					<h:outputText value="Nome" />
+					<h:outputText value="#{cadPa2Bean.cadPac.nome}" />
 				
 					</p:panelGrid>
 				</p:outputPanel>
 				</div>
 			</p:dialog>
-		</h:form>
+		</h:form> -->
 	</ui:define>
 </ui:composition>
 </html>

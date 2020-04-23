@@ -2,11 +2,14 @@ package br.com.spdm.prontuariosantigos.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -32,8 +35,9 @@ public class CadPa2 implements Serializable {
 	@Column(name="codemp",length=10)
 	private String codemp;
 	
-	@Column(name="codpac",length=10,unique=true)
-	private String codigoPaciente;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="codpac",referencedColumnName="codpac",nullable=false)
+	private CadPac cadPac;
 	
 	@Column(name="condic",length=1)
 	private String condic;
@@ -206,8 +210,8 @@ public class CadPa2 implements Serializable {
 		return codemp;
 	}
 
-	public String getCodigoPaciente() {
-		return codigoPaciente;
+	public CadPac getCadPac() {
+		return cadPac;
 	}
 
 	public String getCondic() {

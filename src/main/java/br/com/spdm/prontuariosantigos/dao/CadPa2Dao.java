@@ -55,14 +55,20 @@ public class CadPa2Dao implements Serializable{
 		return this.dao.quantidadeDeElementos();
 	}
 	
-	public List<CadPa2> porMaeSemelhante(String maePaciente) {
+	/*public List<CadPa2> porMaeSemelhante(String maePaciente) {
 		return em.createQuery("from CadPa2 where maePaciente like :maePaciente", CadPa2.class)
 				.setParameter("maePaciente", "%" + maePaciente + "%")
+				.getResultList();
+	}*/
+	
+	public List<CadPa2> porNomeSemelhante(String nomePaciente) {
+		return em.createQuery("from CadPa2 where cadPac.nome like :nome", CadPa2.class)
+				.setParameter("nome", "%" + nomePaciente + "%")
 				.getResultList();
 	}
 	
 	public List<CadPa2> porCodigoPaciente(String codigoPaciente) {
-		return em.createQuery("from CadPa2 where codigoPaciente = :codigoPaciente", CadPa2.class)
+		return em.createQuery("from CadPa2 where cadPac.codigoPaciente = :codigoPaciente", CadPa2.class)
 				.setParameter("codigoPaciente", "%" + codigoPaciente + "%")
 				.getResultList();
 	}

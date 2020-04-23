@@ -11,9 +11,9 @@ public class HomeBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	public String acessarWarelineAntiga(){
+	public String acessarWarelineDOS(){
 		System.out.println("Acessando cadastro Wareline Antiga");
-		return "cadpac?faces-redirect=true";
+		return "cadpa2?faces-redirect=true";
 	}
 	
 	public String acessarSandor(){
