@@ -23,6 +23,8 @@ public class CadPac implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	//COLUNAS do CADPAC.DBF
+	
 	@Column(name="codpac",length=10,unique=true)
 	private String codigoPaciente;
 	
@@ -97,6 +99,7 @@ public class CadPac implements Serializable {
 	
 	@Column(name="certnasc",length=15)
 	private String certidaoNascimento;
+	
 	
 	//GETTERS
 	

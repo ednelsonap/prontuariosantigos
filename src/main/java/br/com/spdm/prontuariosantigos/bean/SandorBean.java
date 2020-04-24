@@ -10,33 +10,33 @@ import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-import br.com.spdm.prontuariosantigos.dao.WarelineDao;
-import br.com.spdm.prontuariosantigos.model.Wareline;
+import br.com.spdm.prontuariosantigos.dao.SandorDao;
+import br.com.spdm.prontuariosantigos.model.Sandor;
 
 @Named
 @ViewScoped
-public class WarelineBean implements Serializable{
+public class SandorBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Wareline wareline = new Wareline();
+	private Sandor sandor = new Sandor();
 	private String nomePaciente;
 
-	private List<Wareline> pacientesFiltrados;
+	private List<Sandor> pacientesFiltrados;
 	
 	@Inject
-	private WarelineDao warelineDao; 
+	private SandorDao sandorDao; 
 	
 	/*@Inject
 	private FacesContext context;*/
 	
 	
-	public Wareline getWareline() {
-		return wareline;
+	public Sandor getSandor() {
+		return sandor;
 	}
 
-	public void setWareline(Wareline wareline) {
-		this.wareline = wareline;
+	public void setSandor(Sandor sandor) {
+		this.sandor = sandor;
 	}
 
 	public String getNomePaciente() {
@@ -48,15 +48,15 @@ public class WarelineBean implements Serializable{
 	}
 	
 	public void pesquisarPorNome() {
-		pacientesFiltrados = warelineDao.porNomeSemelhante(nomePaciente);
+		pacientesFiltrados = sandorDao.porNomeSemelhante(nomePaciente);
 	}
 	
-	public List<Wareline> getPacientesFiltrados() {
+	public List<Sandor> getPacientesFiltrados() {
 		return pacientesFiltrados;
 	}
 	
 	public void limparPesquisa() {
-		this.wareline = new Wareline();
+		this.sandor = new Sandor();
 		this.pacientesFiltrados = new ArrayList<>();
 		this.nomePaciente = ""; 
 		PrimeFaces.current().resetInputs("formPesquisa:panelGridPesquisa");

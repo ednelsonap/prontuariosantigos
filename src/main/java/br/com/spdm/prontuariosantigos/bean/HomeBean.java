@@ -13,7 +13,7 @@ public class HomeBean implements Serializable{
 	
 	public String acessarWarelineDOS(){
 		System.out.println("Acessando cadastro Wareline Antiga");
-		return "cadpa2?faces-redirect=true";
+		return "wareline?faces-redirect=true";
 	}
 	
 	public String acessarSandor(){

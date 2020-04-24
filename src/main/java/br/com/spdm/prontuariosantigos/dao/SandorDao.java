@@ -7,35 +7,35 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import br.com.spdm.prontuariosantigos.model.Wareline;
+import br.com.spdm.prontuariosantigos.model.Sandor;
 
-public class WarelineDao implements Serializable{
+public class SandorDao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private EntityManager em;
 	
-	private DAO<Wareline> dao;
+	private DAO<Sandor> dao;
 	
 	@PostConstruct
 	void init(){
-		this.dao = new DAO<Wareline> (this.em, Wareline.class);
+		this.dao = new DAO<Sandor> (this.em, Sandor.class);
 	}
 	//Métodos delegados do DAO
-	public void adiciona(Wareline wareline) {
-		this.dao.adiciona(wareline);
+	public void adiciona(Sandor sandor) {
+		this.dao.adiciona(sandor);
 	}
 
-	public void remove(Wareline wareline) {
-		this.dao.remove(wareline);
+	public void remove(Sandor sandor) {
+		this.dao.remove(sandor);
 	}
 
-	public void atualiza(Wareline wareline) {
-		this.dao.atualiza(wareline);
+	public void atualiza(Sandor sandor) {
+		this.dao.atualiza(sandor);
 	}
 
-	public List<Wareline> listaTodos() {
+	public List<Sandor> listaTodos() {
 		return this.dao.listaTodos();
 	}
 
@@ -43,11 +43,11 @@ public class WarelineDao implements Serializable{
 		return this.dao.contaTodos();
 	}
 
-	public Wareline buscaPorId(Integer id) {
+	public Sandor buscaPorId(Integer id) {
 		return this.dao.buscaPorId(id);
 	}
 	
-	public List<Wareline> listaTodosPaginada(int firstResult, int maxResults, String coluna, String valor) {
+	public List<Sandor> listaTodosPaginada(int firstResult, int maxResults, String coluna, String valor) {
 		return this.dao.listaTodosPaginada(firstResult, maxResults, coluna, valor);
 	}
 	
@@ -55,8 +55,8 @@ public class WarelineDao implements Serializable{
 		return this.dao.quantidadeDeElementos();
 	}
 	
-	public List<Wareline> porNomeSemelhante(String nomePaciente) {
-		return em.createQuery("from Wareline w where w.nomPac like :nome", Wareline.class)
+	public List<Sandor> porNomeSemelhante(String nomePaciente) {
+		return em.createQuery("from Sandor s where s.nomePac like :nome", Sandor.class)
 				.setParameter("nome", "%" + nomePaciente + "%")
 				.getResultList();
 	}
