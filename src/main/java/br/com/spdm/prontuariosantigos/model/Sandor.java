@@ -20,7 +20,7 @@ public class Sandor implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "prontu", length = 10)
+	@Column(name = "prontu", length = 10, unique=true, nullable=false)
 	private String prontu;
 
 	@Column(name = "prontuant", length = 10)
@@ -65,10 +65,10 @@ public class Sandor implements Serializable {
 	@Column(name = "docum", length = 15)
 	private String docum;
 	
-	@Column(name = "tdocum", length = 3)
+	@Column(name = "tdocum", length = 10)
 	private String tDocum;
 	
-	@Column(name = "funresp", length = 20)
+	@Column(name = "funresp", length = 30)
 	private String funResp;
 	
 	@Column(name = "bairro", length = 20)
@@ -83,10 +83,10 @@ public class Sandor implements Serializable {
 	@Column(name = "conjuge", length = 60)
 	private String conjuge;
 	
-	@Column(name = "profissao", length = 20)
+	@Column(name = "profissao", length = 30)
 	private String profissao;
 	
-	@Column(name = "emprtr", length = 20)
+	@Column(name = "emprtr", length = 30)
 	private String emprTr;
 	
 	@Column(name = "cgcemptr", length = 10)
@@ -98,10 +98,10 @@ public class Sandor implements Serializable {
 	@Column(name = "cor", length = 10)
 	private String cor;
 	
-	@Column(name = "codconv", length = 20)
+	@Column(name = "codconv", length = 50)
 	private String codConv;
 	
-	@Column(name = "grau", length = 20)
+	@Column(name = "grau", length = 50)
 	private String grau;
 	
 	@Column(name = "ddd", length = 5)
@@ -110,7 +110,7 @@ public class Sandor implements Serializable {
 	@Column(name = "fone", length = 10)
 	private String fone;
 	
-	@Column(name = "natural", length = 30)
+	@Column(name = "naturali", length = 30)
 	private String natural;
 	
 	@Column(name = "filhos", length = 10)
@@ -152,13 +152,13 @@ public class Sandor implements Serializable {
 	@Column(name = "profconj", length = 30)
 	private String profConj;
 	
-	@Column(name = "emprconj", length = 20)
+	@Column(name = "emprconj", length = 50)
 	private String emprConj;
 	
 	@Column(name = "parentesco", length = 20)
 	private String parentesco;
 	
-	@Column(name = "plempresa", length = 20)
+	@Column(name = "plempresa", length = 50)
 	private String plEmpresa;
 	
 	@Column(name = "titular", length = 60)

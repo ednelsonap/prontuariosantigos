@@ -9,14 +9,14 @@
 <ui:composition template="_template.xhtml">
 
 	<ui:define name="titulo">
-		<title>Wareline</title>
+		<title>Wareline DOS</title>
 	</ui:define>
 
 	<ui:define name="conteudo">
 
 		<h:form id="formPesquisa">
 			<div align="center">
-				<p:fieldset legend="Pesquisar Paciente">
+				<p:fieldset legend="Pesquisa Cadastro Wareline DOS" style="width:50%;">
 					<p:panelGrid columns="4" id="panelGridPesquisa">
 
 						<p:outputLabel value="Nome:" for="nome" />
@@ -45,7 +45,7 @@
 
 			<p:dataTable id="tabelaPacientes" var="paciente" 
 				value="#{warelineBean.pacientesFiltrados}"
-				emptyMessage="Nenhum paciente cadastrado" 
+				emptyMessage="Nenhum paciente para exibir" 
 				paginator="true" rows="10"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
@@ -60,25 +60,32 @@
 					<h:outputText value="#{paciente.codPac}" />
 				</p:column>
 
+				<p:column headerText="Número de Pasta"
+					style="width: 60px;">
+					<h:outputText value="#{paciente.numPas}" />
+				</p:column>
+				
 				<p:column headerText="Nome"
 					style="width: 300px;" >
 					<h:outputText value="#{paciente.nomPac}" />
 				</p:column>
 
-				<p:column headerText="Data Nasc." >
-					<h:outputText value="#{paciente.datNas}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
+				<p:column headerText="Data Nasc." 
+					style="width: 80px;">
+					<h:outputText value="#{paciente.datNas}" />
 				</p:column>
 
 				<p:column headerText="Sexo"
-					style="width: 300px;" >
+					style="width: 50px;" >
 					<h:outputText value="#{paciente.sexPac}" />
 				</p:column>
-				
 
 				<p:column headerText="Mãe">
 					<h:outputText value="#{paciente.maePac}" />
+				</p:column>
+				
+				<p:column headerText="Pai">
+					<h:outputText value="#{paciente.paiPac}" />
 				</p:column>
 				
 				<p:column headerText="Ações" style="width: 50px;">
@@ -126,18 +133,36 @@
 				
 					<h:outputText value="Sexo" />
 					<h:outputText value="#{warelineBean.wareline.sexPac}" />
-				
+			
+					<h:outputText value="Mãe" />
+					<h:outputText value="#{warelineBean.wareline.maePac}" />
+					
+					<h:outputText value="Pai" />
+					<h:outputText value="#{warelineBean.wareline.paiPac}" />
+					
+					<h:outputText value="Naturalidade" />
+					<h:outputText value="#{warelineBean.wareline.natura}" />
+					
+					<h:outputText value="UF Nascimento" />
+					<h:outputText value="#{warelineBean.wareline.ufNatPac}" />
+					
 					<h:outputText value="Endereço" />
 					<h:outputText value="#{warelineBean.wareline.endPac}" />
 				
+					<h:outputText value="Número Residência" />
+					<h:outputText value="#{warelineBean.wareline.numResid}" />
+				
+					<h:outputText value="CEP" />
+					<h:outputText value="#{warelineBean.wareline.cepPac}" />
+					
 					<h:outputText value="Bairro" />
 					<h:outputText value="#{warelineBean.wareline.baiPac}" />
 				
 					<h:outputText value="Cód. Município" />
 					<h:outputText value="#{warelineBean.wareline.codMun}" />
-				
-					<h:outputText value="CEP" />
-					<h:outputText value="#{warelineBean.wareline.cepPac}" />
+					
+					<h:outputText value="Telefone" />
+					<h:outputText value="#{warelineBean.wareline.telPac}" />
 				
 					<h:outputText value="Documento" />
 					<h:outputText value="#{warelineBean.wareline.docPac}" />
@@ -147,21 +172,6 @@
 
 					<h:outputText value="PIS" />
 					<h:outputText value="#{warelineBean.wareline.pisPac}" />
-				
-					<h:outputText value="Telefone" />
-					<h:outputText value="#{warelineBean.wareline.telPac}" />
-				
-					<h:outputText value="PasPac" />
-					<h:outputText value="#{warelineBean.wareline.pasPac}" />
-				
-					<h:outputText value="Módulo" />
-					<h:outputText value="#{warelineBean.wareline.modulo}" />
-				
-					<h:outputText value="Último Atend." />
-					<h:outputText value="#{warelineBean.wareline.ultAte}" />
-				
-					<h:outputText value="Hora Atend." />
-					<h:outputText value="#{warelineBean.wareline.horAte}" />
 				
 					<h:outputText value="Número de Pasta" />
 					<h:outputText value="#{warelineBean.wareline.numPas}" />
@@ -174,21 +184,15 @@
 				
 					<h:outputText value="Data Cadastro" />
 					<h:outputText value="#{warelineBean.wareline.dtCadast}" />
-				
-					<h:outputText value="Número Residência" />
-					<h:outputText value="#{warelineBean.wareline.numResid}" />
-
-					<h:outputText value="Cartão SUS" />
-					<h:outputText value="#{warelineBean.wareline.cartaoSus}" />
-
-					<h:outputText value="Cód. Bairro" />
-					<h:outputText value="#{warelineBean.wareline.codBai}" />
 		
 					<h:outputText value="PIS" />
 					<h:outputText value="#{warelineBean.wareline.pis}" />
 
 					<h:outputText value="Certidão Nasc." />
 					<h:outputText value="#{warelineBean.wareline.certNasc}" />
+				
+					<h:outputText value="Data Óbito." />
+					<h:outputText value="#{warelineBean.wareline.dtObito}" />
 				
 					</p:panelGrid>
 				</p:outputPanel>

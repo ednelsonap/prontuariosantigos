@@ -59,9 +59,24 @@
 			<h:panelGrid columns="2" style="font-size: 12px; position:absolute; top:0; right:0;" >
 				
 				<p:menuButton value="#{usuarioLogado.login}">
-					<p:menuitem value="Alterar Senha" action="usuario?faces-redirect=true" icon="fa fa-fw fa-lock" />
-					<p:menuitem value="Sair" action="#{loginBean.deslogar}" icon="fa fa-fw fa-sign-out" />
+					
+					<p:menuitem value="Home" action="home?faces-redirect=true"	
+						icon="fa fa-fw fa-home" />
+					
+					<p:menuitem value="Wareline DOS" action="wareline?faces-redirect=true"
+						icon="fa fa-fw fa-shopping-cart"/>		
+					
+					<p:menuitem value="Sandor" action="sandor?faces-redirect=true"
+						icon="fa fa-fw fa-user" />
+						
+					<p:separator />
+					
+					<p:menuitem value="Sair" action="#{loginBean.deslogar}" 
+						icon="fa fa-fw fa-sign-out" />
+						
 				</p:menuButton>
+				
+				
 			
 			</h:panelGrid>
 		</h:form>
@@ -82,7 +97,7 @@
 
 	<div id="conteudo"
 		style="font-size: 12px;">
-
+			
 		<h1>
 			<ui:insert name="titulo"></ui:insert>
 		</h1>

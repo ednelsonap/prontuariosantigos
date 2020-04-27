@@ -16,7 +16,7 @@
 
 		<h:form id="formPesquisa">
 			<div align="center">
-				<p:fieldset legend="Pesquisar Paciente">
+				<p:fieldset legend="Pesquisa Cadastro Sandor" style="width:50%;">
 					<p:panelGrid columns="4" id="panelGridPesquisa">
 
 						<p:outputLabel value="Nome:" for="nome" />
@@ -45,7 +45,7 @@
 
 			<p:dataTable id="tabelaPacientes" var="paciente" 
 				value="#{sandorBean.pacientesFiltrados}"
-				emptyMessage="Nenhum paciente cadastrado" 
+				emptyMessage="Nenhum paciente para exibir" 
 				paginator="true" rows="10"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
@@ -57,22 +57,20 @@
 				</f:facet>
 
 				<p:column headerText="Código" style="width: 70px;">
-					<h:outputText value="#{paciente.pront}" />
+					<h:outputText value="#{paciente.prontu}" />
 				</p:column>
 
-				<p:column headerText="Nome"
-					style="width: 300px;" >
+				<p:column headerText="Nome">
 					<h:outputText value="#{paciente.nomePac}" />
 				</p:column>
 
-				<p:column headerText="Data Nasc." >
-					<h:outputText value="#{paciente.dataNasc}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
+				<p:column headerText="Data Nasc." 
+					style="width: 80px;">
+					<h:outputText value="#{paciente.dataNasc}" />
 				</p:column>
 
 				<p:column headerText="Sexo"
-					style="width: 300px;" >
+					style="width: 50px;"  >
 					<h:outputText value="#{paciente.sexo}" />
 				</p:column>
 
@@ -136,38 +134,44 @@
 					<h:outputText value="Bairro" />
 					<h:outputText value="#{sandorBean.sandor.bairro}" />
 				
-					<h:outputText value="Cód. Município" />
+					<h:outputText value="CEP" />
 					<h:outputText value="#{sandorBean.sandor.cep}" />
 				
-					<h:outputText value="CEP" />
+					<h:outputText value="Município" />
 					<h:outputText value="#{sandorBean.sandor.cidade}" />
+					
+					<h:outputText value="Estado" />
+					<h:outputText value="#{sandorBean.sandor.estado}" />
 				
+					<h:outputText value="Mãe" />
+					<h:outputText value="#{sandorBean.sandor.mae}" />
+					
+					<h:outputText value="Pai" />
+					<h:outputText value="#{sandorBean.sandor.pai}" />
+					
+					<h:outputText value="Conjuge" />
+					<h:outputText value="#{sandorBean.sandor.conjuge}" />
+					
 					<h:outputText value="DDD" />
 					<h:outputText value="#{sandorBean.sandor.ddd}" />
 				
 					<h:outputText value="Telefone" />
 					<h:outputText value="#{sandorBean.sandor.fone}" />
 					
-					<h:outputText value="Documento" />
-					<h:outputText value="#{sandorBean.sandor.estado}" />
-				
 					<h:outputText value="Tipo Documento" />
 					<h:outputText value="#{sandorBean.sandor.tDocum}" />
 					
 					<h:outputText value="Documento" />
 					<h:outputText value="#{sandorBean.sandor.docum}" />
-				
+					
 					<h:outputText value="CPF" />
 					<h:outputText value="#{sandorBean.sandor.cpf}" />
-
-					<h:outputText value="PIS" />
-					<h:outputText value="#{sandorBean.sandor.pis}" />
-				
+					
 					<h:outputText value="Naturalidade" />
 					<h:outputText value="#{sandorBean.sandor.natural}" />
-				
-					<h:outputText value="CadSus" />
-					<h:outputText value="#{sandorBean.sandor.cadsus}" />
+					
+					<h:outputText value="Certidão Nascimento" />
+					<h:outputText value="#{sandorBean.sandor.cNasc}" />
 				
 					</p:panelGrid>
 				</p:outputPanel>
